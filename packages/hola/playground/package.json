@@ -1,0 +1,7 @@
+{
+    "name": "playground",
+    "type": "module",
+    "dependencies": {
+        "@jakezneal/hola": "file:../"
+    }
+}
