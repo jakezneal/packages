@@ -1,0 +1,1 @@
+# `@jakezneal/prettier-config`

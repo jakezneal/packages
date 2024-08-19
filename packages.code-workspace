@@ -8,5 +8,9 @@
             "name": "👋 Hola",
             "path": "packages/hola",
         },
+        {
+            "name": "🅿️ Prettier Config",
+            "path": "packages/prettier-config",
+        },
     ],
 }
