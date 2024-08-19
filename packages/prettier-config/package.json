@@ -2,7 +2,6 @@
     "name": "@jakezneal/eslint-config",
     "version": "0.1.0",
     "license": "MIT",
-    "type": "module",
     "exports": {
         ".": {
             "import": "./dist/index.mjs",
@@ -16,7 +15,7 @@
         "./dist"
     ],
     "scripts": {
-        "build": "unbuild",
+        "build": "tsup src/index.ts --format esm,cjs --clean --dts",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
         "format": "prettier --write \"**/*.{ts,md,json}\"",
         "prepack": "pnpm build"
@@ -26,7 +25,8 @@
     },
     "devDependencies": {
         "@types/node": "^22.4.1",
-        "typescript": "^5.5.4",
-        "unbuild": "^2.0.0"
+        "prettier": "^3.2.5",
+        "tsup": "^8.2.4",
+        "typescript": "^5.5.4"
     }
 }
