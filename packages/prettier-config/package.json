@@ -1,6 +1,6 @@
 {
-    "name": "@jakezneal/eslint-config",
-    "version": "0.1.0",
+    "name": "@jakezneal/prettier-config",
+    "version": "0.2.0",
     "license": "MIT",
     "exports": {
         ".": {
