@@ -12,5 +12,17 @@
             "name": "🅿️ Prettier Config",
             "path": "packages/prettier-config",
         },
+        {
+            "name": "❌ ESLint Config (Basic)",
+            "path": "packages/eslint-config-basic",
+        },
+        {
+            "name": "❌ ESLint Config (Vue)",
+            "path": "packages/eslint-config-vue",
+        },
+        {
+            "name": "❌ ESLint Config",
+            "path": "packages/eslint-config",
+        },
     ],
 }

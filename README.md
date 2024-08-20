@@ -12,3 +12,5 @@ This monrepo includes the following packages:
 ### Apps and Packages
 
 -   🪄 [Hola](packages/hola) — A CLI for configuring and scaffolding front-end projects
+-   🅿️ [Prettier Config](packages/prettier-config) — My personal Prettier config
+-   ❌ [ESLint Config](packages/eslint-config) — My personal ESLint config
