@@ -7,7 +7,7 @@ This is a monorepo of packages that contains my most commonly used config/functi
 
 ## What's inside?
 
-This monrepo includes the following packages:
+This monorepo includes the following packages:
 
 ### Apps and Packages
 
