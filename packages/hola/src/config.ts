@@ -1,5 +1,5 @@
-import type { HolaConfig } from './types';
 import { loadConfig } from 'c12';
+import type { HolaConfig } from './types';
 
 const config = async () => {
     const { config } = await loadConfig<HolaConfig>({

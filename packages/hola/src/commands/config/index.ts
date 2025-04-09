@@ -1,7 +1,7 @@
-import { defineCommand } from 'citty';
-import { promptScope } from '../../prompts.js';
 import { log } from '@clack/prompts';
+import { defineCommand } from 'citty';
 import config from '../../config';
+import { promptScope } from '../../prompts.js';
 
 export default defineCommand({
     meta: {

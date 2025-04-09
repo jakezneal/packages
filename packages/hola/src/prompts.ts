@@ -1,11 +1,11 @@
 import {
-    select as _select,
     confirm as _confirm,
+    intro as _intro,
+    select as _select,
     text as _text,
     isCancel,
-    type ConfirmOptions,
-    intro as _intro,
     outro,
+    type ConfirmOptions,
     type TextOptions,
 } from '@clack/prompts';
 
@@ -34,7 +34,9 @@ function bailIfCancelled<Value>(promptResponse: symbol | Value) {
     return promptResponse;
 }
 
-export async function select<Options extends Option<Value>[], Value>(options: SelectOptions<Options, Value>) {
+export async function select<Options extends Option<Value>[], Value>(
+    options: SelectOptions<Options, Value>,
+) {
     return bailIfCancelled(await _select(options));
 }
 
@@ -50,14 +52,24 @@ function intro(value: string) {
     return _intro(`✨ ${value}`);
 }
 
-export async function promptScope(run: (payload: { intro: typeof intro; outro: typeof outro }) => Promise<void>) {
+export async function promptScope(
+    run: (payload: {
+        intro: typeof intro;
+        outro: typeof outro;
+    }) => Promise<void>,
+) {
     try {
         await run({
             intro,
             outro,
         });
     } catch (e) {
-        if (typeof e === 'object' && e && 'name' in e && typeof e.name === 'string') {
+        if (
+            typeof e === 'object' &&
+            e &&
+            'name' in e &&
+            typeof e.name === 'string'
+        ) {
             if (e.name === PROMPT_CANCELLED) {
                 outro('Cancelled');
 

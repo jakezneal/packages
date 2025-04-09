@@ -7,7 +7,10 @@ import pluginVueAccessibility from 'eslint-plugin-vuejs-accessibility';
 const config: Linter.Config = {
     plugins: {
         vue: pluginVue,
-        'vuejs-accessibility': pluginVueAccessibility.configs['flat/recommended'][1].plugins['vuejs-accessibility'],
+        'vuejs-accessibility':
+            pluginVueAccessibility.configs['flat/recommended'][1].plugins[
+                'vuejs-accessibility'
+            ],
     },
     rules: {
         'vue/no-console': [1],

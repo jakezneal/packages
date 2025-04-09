@@ -1,8 +1,8 @@
 import { defineCommand } from 'citty';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'pathe';
-import type { HolaConfig } from '../../types';
 import { confirm, promptScope } from '../../prompts';
+import type { HolaConfig } from '../../types';
 
 export default defineCommand({
     meta: {
@@ -13,7 +13,9 @@ export default defineCommand({
     async run() {
         const rootDir = process.cwd();
         const configPath = resolve(rootDir, './.hola.config.js');
-        const packageJson = JSON.parse(readFileSync(resolve(rootDir, './package.json'), 'utf-8'));
+        const packageJson = JSON.parse(
+            readFileSync(resolve(rootDir, './package.json'), 'utf-8'),
+        );
 
         const dependencies = {
             ...(packageJson.dependencies ?? {}),
@@ -23,14 +25,18 @@ export default defineCommand({
         await promptScope(async ({ intro, outro }) => {
             intro('👋 Hola. Creating config...');
 
-            const storybookDetected = Object.keys(dependencies).some((name) => name.includes('storybook'));
+            const storybookDetected = Object.keys(dependencies).some((name) =>
+                name.includes('storybook'),
+            );
 
             const hasStorybook = await confirm({
                 message: 'Does this project use storybook?',
                 initialValue: storybookDetected,
             });
 
-            const vitestDetected = Object.keys(dependencies).some((name) => name.includes('vitest'));
+            const vitestDetected = Object.keys(dependencies).some((name) =>
+                name.includes('vitest'),
+            );
 
             const hasTests = await confirm({
                 message: 'Does this project have unit tests?',

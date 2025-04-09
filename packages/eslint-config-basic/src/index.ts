@@ -1,6 +1,6 @@
 // @ts-ignore
-import * as pluginImport from 'eslint-plugin-i';
 import type { Linter } from 'eslint';
+import * as pluginImport from 'eslint-plugin-i';
 
 const config: Linter.Config = {
     plugins: {

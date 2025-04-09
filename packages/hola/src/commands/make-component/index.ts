@@ -1,4 +1,4 @@
-import { defineCommand, runMain } from 'citty';
+import { defineCommand } from 'citty';
 
 import config from '../../config';
 
@@ -43,7 +43,9 @@ export default defineCommand({
 
         const [componentName] = componentPath.split('/').slice(-1);
 
-        log.info(`📚 Stories: ${holaConfig?.features?.storybook ? 'yes' : 'no'}`);
+        log.info(
+            `📚 Stories: ${holaConfig?.features?.storybook ? 'yes' : 'no'}`,
+        );
 
         await promptScope(async ({ outro, intro }) => {
             intro(`Generating component boilerplate for ${componentName}`);
@@ -83,7 +85,10 @@ export default defineCommand({
             }
 
             files.forEach(async ({ name, file }) => {
-                const filePath = resolve(componentPath, name.replace('Component', componentName));
+                const filePath = resolve(
+                    componentPath,
+                    name.replace('Component', componentName),
+                );
                 const compiled = file({
                     component: {
                         name: {
@@ -96,7 +101,10 @@ export default defineCommand({
                     paths: {
                         fromRoot: (fromPath: string) => {
                             const root = process.cwd();
-                            const fullComponentPath = resolve(root, componentPath);
+                            const fullComponentPath = resolve(
+                                root,
+                                componentPath,
+                            );
                             const fullPath = resolve(root, fromPath);
 
                             return relative(fullComponentPath, fullPath);
@@ -114,14 +122,20 @@ export default defineCommand({
             });
 
             if (holaConfig?.features?.storybook) {
-                log.info(`Story generated at ${componentPath}/${componentName}.stories.ts`);
+                log.info(
+                    `Story generated at ${componentPath}/${componentName}.stories.ts`,
+                );
             }
 
             if (holaConfig?.features?.tests) {
-                log.info(`Test generated at ${componentPath}/${componentName}.spec.ts`);
+                log.info(
+                    `Test generated at ${componentPath}/${componentName}.spec.ts`,
+                );
             }
 
-            outro(`Component generated at ${componentPath}/${componentName}.vue`);
+            outro(
+                `Component generated at ${componentPath}/${componentName}.vue`,
+            );
         });
     },
 });
