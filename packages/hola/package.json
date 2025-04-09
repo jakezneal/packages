@@ -22,6 +22,7 @@
     ],
     "scripts": {
         "build": "unbuild",
+        "stub": "unbuild --stub",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
         "format": "prettier --write \"**/*.{ts,md,json}\"",
         "prepack": "pnpm build"
