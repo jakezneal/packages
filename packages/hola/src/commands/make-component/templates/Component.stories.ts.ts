@@ -6,6 +6,7 @@ export default (value: TemplateData) => `/**
  * @see https://storybook.js.org/docs/vue/essentials/controls
  */
 
+import { argsKeys, generateArgTypes } from '${value.paths.fromRoot('.storybook/helpers')}';
 import ${value.component.name.pascal}, { type ${value.component.name.pascal}Props } from './${value.component.name.pascal}.vue';
 import type { Meta, StoryObj } from '@storybook/vue3';
 
@@ -20,17 +21,17 @@ const meta = {
      *
      * @see https://storybook.js.org/docs/vue/essentials/controls#annotation
      */
-    argTypes: {},
+    argTypes: generateArgTypes(${value.component.name.pascal}),
     /**
      * Set any default props data on your component.
      *
-     * @see https://storybook.js.org/docs/8.0/vue/writing-stories/args
+     * @see https://storybook.js.org/docs/vue/writing-stories/args
      */
     args: {},
     /**
      * Set any default parameters on your stories.
      *
-     * @see https://storybook.js.org/docs/8.0/vue/writing-stories/parameters
+     * @see https://storybook.js.org/docs/vue/writing-stories/parameters
      */
     parameters: {
         container: true,
@@ -39,12 +40,12 @@ const meta = {
     /**
      * Return your rendered component.
      *
-     * @see https://storybook.js.org/docs/8.0/vue/api/csf
+     * @see https://storybook.js.org/docs/vue/api/csf
      */
-    render: (args) => ({
+    render: (args: ${value.component.name.pascal}Props, { argTypes }) => ({
         name: '${value.component.name.kebab}-story',
 
-        props: args,
+        props: argsKeys({ ...args, ...argTypes }),
 
         components: { ${value.component.name.pascal} },
 
