@@ -113,7 +113,15 @@ export default defineCommand({
                 writeFileSync(filePath, compiled, 'utf-8');
             });
 
-            outro(`Component generated at ${path}/${componentName}`);
+            if (holaConfig?.features?.storybook) {
+                log.info(`Story generated at ${componentPath}/${componentName}.stories.ts`);
+            }
+
+            if (holaConfig?.features?.tests) {
+                log.info(`Test generated at ${componentPath}/${componentName}.spec.ts`);
+            }
+
+            outro(`Component generated at ${componentPath}/${componentName}.vue`);
         });
     },
 });
