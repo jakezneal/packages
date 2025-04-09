@@ -30,17 +30,18 @@ export default defineCommand({
         const holaConfig = await config();
         const { path } = args;
 
+        let componentPath = path;
+
         if (!path) {
             intro('make:component');
 
-            log.error('Component path is required');
-
-            outro('');
-
-            return;
+            componentPath = await text({
+                message: 'Component path:',
+                placeholder: 'ui/Alert',
+            });
         }
 
-        const [componentName] = path.split('/').slice(-1);
+        const [componentName] = componentPath.split('/').slice(-1);
 
         log.info(`📚 Stories: ${holaConfig?.features?.storybook ? 'yes' : 'no'}`);
 
@@ -48,7 +49,7 @@ export default defineCommand({
             intro(`Generating component boilerplate for ${componentName}`);
 
             note(componentName, 'Component name:');
-            note(path, 'Component path:');
+            note(componentPath, 'Component path:');
 
             const confirmed = await confirm({
                 message: 'Is the above correct?',
@@ -82,7 +83,7 @@ export default defineCommand({
             }
 
             files.forEach(async ({ name, file }) => {
-                const filePath = resolve(path, name.replace('Component', componentName));
+                const filePath = resolve(componentPath, name.replace('Component', componentName));
                 const compiled = file({
                     component: {
                         name: {
@@ -95,7 +96,7 @@ export default defineCommand({
                     paths: {
                         fromRoot: (fromPath: string) => {
                             const root = process.cwd();
-                            const fullComponentPath = resolve(root, path);
+                            const fullComponentPath = resolve(root, componentPath);
                             const fullPath = resolve(root, fromPath);
 
                             return relative(fullComponentPath, fullPath);
@@ -103,8 +104,8 @@ export default defineCommand({
                     },
                 });
 
-                if (!existsSync(path)) {
-                    mkdirSync(path, {
+                if (!existsSync(componentPath)) {
+                    mkdirSync(componentPath, {
                         recursive: true,
                     });
                 }
