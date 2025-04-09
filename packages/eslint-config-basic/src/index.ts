@@ -1,5 +1,5 @@
-// @ts-ignore
 import type { Linter } from 'eslint';
+// @ts-ignore
 import * as pluginImport from 'eslint-plugin-i';
 
 const config: Linter.Config = {

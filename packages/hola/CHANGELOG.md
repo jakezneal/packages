@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.2.0
+
+### Minor Changes
+
+-   Added ability to eject templates and tidied some bits up
+
 ## 1.1.0
 
 ### Minor Changes
