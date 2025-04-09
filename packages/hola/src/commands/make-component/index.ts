@@ -49,70 +49,70 @@ export default defineCommand({
 
             note(componentName, 'Component name:');
             note(path, 'Component path:');
-        });
 
-        const confirmed = await confirm({
-            message: 'Is the above correct?',
-        });
-
-        if (!confirmed) {
-            outro('Aborted');
-
-            return;
-        }
-
-        const files = [
-            {
-                name: 'Component.vue',
-                file: componentTemplate,
-            },
-        ];
-
-        if (holaConfig?.features?.storybook) {
-            files.push({
-                name: 'Component.stories.ts',
-                file: storiesTemplate,
+            const confirmed = await confirm({
+                message: 'Is the above correct?',
             });
-        }
 
-        if (holaConfig?.features?.tests) {
-            files.push({
-                name: 'Component.spec.ts',
-                file: testsTemplate,
-            });
-        }
+            if (!confirmed) {
+                outro('Aborted');
 
-        files.forEach(async ({ name, file }) => {
-            const filePath = resolve(path, name.replace('Component', componentName));
-            const compiled = file({
-                component: {
-                    name: {
-                        pascal: pascalCase(componentName),
-                        kebab: kebabCase(componentName),
-                        camel: camelCase(componentName),
-                    },
+                return;
+            }
+
+            const files = [
+                {
+                    name: 'Component.vue',
+                    file: componentTemplate,
                 },
+            ];
 
-                paths: {
-                    fromRoot: (fromPath: string) => {
-                        const root = process.cwd();
-                        const fullComponentPath = resolve(root, path);
-                        const fullPath = resolve(root, fromPath);
-
-                        return relative(fullComponentPath, fullPath);
-                    },
-                },
-            });
-
-            if (!existsSync(path)) {
-                mkdirSync(path, {
-                    recursive: true,
+            if (holaConfig?.features?.storybook) {
+                files.push({
+                    name: 'Component.stories.ts',
+                    file: storiesTemplate,
                 });
             }
 
-            writeFileSync(filePath, compiled, 'utf-8');
-        });
+            if (holaConfig?.features?.tests) {
+                files.push({
+                    name: 'Component.spec.ts',
+                    file: testsTemplate,
+                });
+            }
 
-        outro(`Component generated at ${path}/${componentName}`);
+            files.forEach(async ({ name, file }) => {
+                const filePath = resolve(path, name.replace('Component', componentName));
+                const compiled = file({
+                    component: {
+                        name: {
+                            pascal: pascalCase(componentName),
+                            kebab: kebabCase(componentName),
+                            camel: camelCase(componentName),
+                        },
+                    },
+
+                    paths: {
+                        fromRoot: (fromPath: string) => {
+                            const root = process.cwd();
+                            const fullComponentPath = resolve(root, path);
+                            const fullPath = resolve(root, fromPath);
+
+                            return relative(fullComponentPath, fullPath);
+                        },
+                    },
+                });
+
+                if (!existsSync(path)) {
+                    mkdirSync(path, {
+                        recursive: true,
+                    });
+                }
+
+                writeFileSync(filePath, compiled, 'utf-8');
+            });
+
+            outro(`Component generated at ${path}/${componentName}`);
+        });
     },
 });
