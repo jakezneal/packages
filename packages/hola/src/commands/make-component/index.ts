@@ -2,15 +2,14 @@ import { defineCommand } from 'citty';
 
 import config from '../../config';
 
+import { intro, log, note, outro } from '@clack/prompts';
 import { confirm, promptScope, text } from '../../prompts';
-import { intro, log, note } from '@clack/prompts';
-import { existsSync, writeFileSync, mkdirSync } from 'fs';
-import { camelCase, kebabCase, pascalCase } from 'scule';
-import { relative, resolve } from 'pathe';
 
-import componentTemplate from './templates/Component.vue';
-import storiesTemplate from './templates/Component.stories.ts';
+import { ejectTemplates, generateTemplates } from './templates';
 import testsTemplate from './templates/Component.spec.ts';
+import storiesTemplate from './templates/Component.stories.ts';
+import componentTemplate from './templates/Component.vue';
+import { generateTemplateData } from './utils';
 
 export default defineCommand({
     meta: {
@@ -24,12 +23,39 @@ export default defineCommand({
             description: 'Component path i.e. ./components/MyComponent',
             required: false,
         },
+
+        eject: {
+            type: 'boolean',
+            description: 'Eject the templates',
+        },
     },
 
     async run({ args }) {
         const holaConfig = await config();
-        const { path } = args;
 
+        if (args.eject) {
+            intro('make:component --eject');
+
+            const templates = await ejectTemplates();
+
+            await templates.component();
+
+            if (holaConfig?.features?.storybook) {
+                await templates.stories();
+            }
+
+            if (holaConfig?.features?.tests) {
+                await templates.tests();
+            }
+
+            outro(
+                `Templates ejected at ${templates.templatesPath.replace(process.cwd(), '.')}`,
+            );
+
+            return;
+        }
+
+        const { path } = args;
         let componentPath = path;
 
         if (!path) {
@@ -47,6 +73,8 @@ export default defineCommand({
             `📚 Stories: ${holaConfig?.features?.storybook ? 'yes' : 'no'}`,
         );
 
+        log.info(`🧪 Tests: ${holaConfig?.features?.tests ? 'yes' : 'no'}`);
+
         await promptScope(async ({ outro, intro }) => {
             intro(`Generating component boilerplate for ${componentName}`);
 
@@ -63,71 +91,34 @@ export default defineCommand({
                 return;
             }
 
-            const files = [
-                {
-                    name: 'Component.vue',
-                    file: componentTemplate,
-                },
-            ];
-
-            if (holaConfig?.features?.storybook) {
-                files.push({
-                    name: 'Component.stories.ts',
-                    file: storiesTemplate,
-                });
-            }
-
-            if (holaConfig?.features?.tests) {
-                files.push({
-                    name: 'Component.spec.ts',
-                    file: testsTemplate,
-                });
-            }
-
-            files.forEach(async ({ name, file }) => {
-                const filePath = resolve(
-                    componentPath,
-                    name.replace('Component', componentName),
-                );
-                const compiled = file({
-                    component: {
-                        name: {
-                            pascal: pascalCase(componentName),
-                            kebab: kebabCase(componentName),
-                            camel: camelCase(componentName),
-                        },
-                    },
-
-                    paths: {
-                        fromRoot: (fromPath: string) => {
-                            const root = process.cwd();
-                            const fullComponentPath = resolve(
-                                root,
-                                componentPath,
-                            );
-                            const fullPath = resolve(root, fromPath);
-
-                            return relative(fullComponentPath, fullPath);
-                        },
-                    },
-                });
-
-                if (!existsSync(componentPath)) {
-                    mkdirSync(componentPath, {
-                        recursive: true,
-                    });
-                }
-
-                writeFileSync(filePath, compiled, 'utf-8');
+            const templateData = generateTemplateData({
+                componentName,
+                componentPath,
             });
 
+            const templates = generateTemplates({
+                componentFileName: 'Component.vue',
+                componentName,
+                outputPath: componentPath,
+                templateData,
+                componentTemplate,
+                storiesTemplate,
+                testsTemplate,
+            });
+
+            await templates.component();
+
             if (holaConfig?.features?.storybook) {
+                await templates.stories();
+
                 log.info(
                     `Story generated at ${componentPath}/${componentName}.stories.ts`,
                 );
             }
 
             if (holaConfig?.features?.tests) {
+                await templates.tests();
+
                 log.info(
                     `Test generated at ${componentPath}/${componentName}.spec.ts`,
                 );
