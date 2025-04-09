@@ -33,4 +33,4 @@ runMain(main);
 
 // Export types
 export type { HolaConfig } from './types';
-// export type { TemplateData as MakeComponentTemplateData } from './commands/make-component';
+export type { TemplateData as MakeComponentTemplateData } from './commands/make-component/types';
