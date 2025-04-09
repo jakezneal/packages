@@ -2,7 +2,7 @@ import { defineCommand } from 'citty';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'pathe';
 import type { HolaConfig } from '../../types';
-import { confirm, promptScope, select } from '../../prompts';
+import { confirm, promptScope } from '../../prompts';
 
 export default defineCommand({
     meta: {
@@ -22,8 +22,6 @@ export default defineCommand({
 
         await promptScope(async ({ intro, outro }) => {
             intro('👋 Hola. Creating config...');
-
-            const vueDetected = Object.keys(dependencies).some((name) => name.includes('vue'));
 
             const storybookDetected = Object.keys(dependencies).some((name) => name.includes('storybook'));
 

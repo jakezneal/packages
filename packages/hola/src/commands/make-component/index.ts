@@ -2,8 +2,8 @@ import { defineCommand, runMain } from 'citty';
 
 import config from '../../config';
 
-import { confirm, promptScope } from '../../prompts';
-import { intro, log, note, outro } from '@clack/prompts';
+import { confirm, promptScope, text } from '../../prompts';
+import { intro, log, note } from '@clack/prompts';
 import { existsSync, writeFileSync, mkdirSync } from 'fs';
 import { camelCase, kebabCase, pascalCase } from 'scule';
 import { relative, resolve } from 'pathe';
