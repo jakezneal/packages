@@ -1,8 +1,22 @@
 #!/usr/bin/env node
 
 import { defineCommand, runMain } from 'citty';
+import { readFileSync } from 'fs';
+import { join } from 'pathe';
+import type { PackageJson } from 'type-fest';
+
+const pkgFile = join(process.cwd(), 'package.json');
+const pkg: PackageJson = JSON.parse(readFileSync(pkgFile, 'utf-8'));
+
+const { name, version } = pkg;
 
 const main = defineCommand({
+    meta: {
+        name,
+        version,
+        description: '👋 Hola',
+    },
+
     setup({ rawArgs }: any) {
         if (rawArgs.length) {
             return;
