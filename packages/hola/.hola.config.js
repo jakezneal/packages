@@ -1,8 +1,10 @@
-/** @type {import('@jakezneal/hola').HolaConfig} */
+/**
+ * @type {import('@jakezneal/hola').HolaConfig}
+ */
 const config = {
     features: {
-        tests: true,
         storybook: true,
+        tests: true,
     },
 };
 
