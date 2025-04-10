@@ -34,6 +34,12 @@ export default defineCommand({
             description:
                 'Override the default path set in the config. Useful for creating a one-off component in a different location',
         },
+
+        prefix: {
+            type: 'boolean',
+            description:
+                'Prefix the component name with the prefix set in the config',
+        },
     },
 
     async run({ args }) {
@@ -73,11 +79,20 @@ export default defineCommand({
             });
         }
 
-        if (holaConfig.defaultPath && !args.overridePath) {
-            componentPath = `${holaConfig.defaultPath}/${componentPath}`;
-        }
+        let [componentName] = componentPath.split('/').slice(-1);
 
-        const [componentName] = componentPath.split('/').slice(-1);
+        componentPath = [
+            holaConfig.defaultPath && !args.overridePath
+                ? `${holaConfig.defaultPath}/`
+                : undefined,
+            componentPath.replace(componentName, ''),
+            args.prefix && holaConfig.prefix ? holaConfig.prefix : undefined,
+            componentName,
+        ].join('');
+
+        if (args.prefix && holaConfig.prefix) {
+            componentName = `${holaConfig.prefix}${componentName}`;
+        }
 
         log.info(
             `📚 Stories: ${holaConfig?.features?.storybook ? 'yes' : 'no'}`,

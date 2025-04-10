@@ -49,12 +49,19 @@ export default defineCommand({
                 initialValue: undefined,
             });
 
+            const prefix = await text({
+                message: 'Define a component name prefix (optional)',
+                placeholder: 'e.g. Ext',
+                initialValue: undefined,
+            });
+
             const config: HolaConfig = {
                 features: {
                     storybook: hasStorybook,
                     tests: hasTests,
                 },
                 defaultPath,
+                prefix,
             };
 
             writeFileSync(
