@@ -64,7 +64,7 @@ export default defineCommand({
         const { path } = args;
         let componentPath = path;
 
-        if (!path || !holaConfig.defaultPath) {
+        if (!path) {
             intro('make:component');
 
             componentPath = await text({
