@@ -5,4 +5,5 @@ export type HolaConfigFeatures = {
 
 export type HolaConfig = {
     features?: HolaConfigFeatures;
+    defaultPath?: string;
 };

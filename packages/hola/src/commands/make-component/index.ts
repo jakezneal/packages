@@ -28,6 +28,12 @@ export default defineCommand({
             type: 'boolean',
             description: 'Eject the templates',
         },
+
+        overridePath: {
+            type: 'boolean',
+            description:
+                'Override the default path set in the config. Useful for creating a one-off component in a different location',
+        },
     },
 
     async run({ args }) {
@@ -58,13 +64,17 @@ export default defineCommand({
         const { path } = args;
         let componentPath = path;
 
-        if (!path) {
+        if (!path || !holaConfig.defaultPath) {
             intro('make:component');
 
             componentPath = await text({
                 message: 'Component path:',
                 placeholder: 'ui/Alert',
             });
+        }
+
+        if (holaConfig.defaultPath && !args.overridePath) {
+            componentPath = `${holaConfig.defaultPath}/${componentPath}`;
         }
 
         const [componentName] = componentPath.split('/').slice(-1);

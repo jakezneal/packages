@@ -1,7 +1,7 @@
 import { defineCommand } from 'citty';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'pathe';
-import { confirm, promptScope } from '../../prompts';
+import { confirm, promptScope, text } from '../../prompts';
 import type { HolaConfig } from '../../types';
 
 export default defineCommand({
@@ -43,11 +43,18 @@ export default defineCommand({
                 initialValue: vitestDetected,
             });
 
+            const defaultPath = await text({
+                message: 'Define a default component path (optional)',
+                placeholder: 'e.g. src/components',
+                initialValue: undefined,
+            });
+
             const config: HolaConfig = {
                 features: {
                     storybook: hasStorybook,
                     tests: hasTests,
                 },
+                defaultPath,
             };
 
             writeFileSync(
