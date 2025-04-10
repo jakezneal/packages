@@ -27,6 +27,7 @@ const main = defineCommand({
         init: () => import('./commands/init').then((r) => r.default),
         'make:component': () =>
             import('./commands/make-component').then((r) => r.default),
+        config: () => import('./commands/config').then((r) => r.default),
     },
 });
 
