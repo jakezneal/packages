@@ -16,7 +16,7 @@ const ejectedTemplatePath = async (path: string = '') =>
     resolve(await ejectPath(), path);
 
 export const getTemplatePath = async (path: string) => {
-    const ejectedPath = await ejectedTemplatePath(`${path}.ts`);
+    const ejectedPath = await ejectedTemplatePath(`${path}.mjs`);
 
     if (existsSync(ejectedPath)) {
         return ejectedPath;
