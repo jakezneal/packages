@@ -65,12 +65,12 @@ export const ejectStub = async (path: string) => {
     }
 
     const stubContent = readFileSync(
-        await defaultTemplatePath(`${path}.ts`),
+        await defaultTemplatePath(`${path}.mjs`),
         'utf-8',
     );
 
     writeFileSync(
-        await ejectedTemplatePath(`${path}.ts`),
+        await ejectedTemplatePath(`${path}.mjs`),
         [
             stubContent
                 .replaceAll('TemplateData', 'MakeComponentTemplateData')
@@ -79,7 +79,7 @@ export const ejectStub = async (path: string) => {
         'utf-8',
     );
 
-    log.success(`Ejected ${path}.ts`);
+    log.success(`Ejected ${path}.mjs`);
 };
 
 export const generateTemplates = ({
