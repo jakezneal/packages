@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.4.2
+
+### Patch Changes
+
+-   Fixed template paths for eject command
+
 ## 1.4.1
 
 ### Patch Changes
