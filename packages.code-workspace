@@ -24,5 +24,9 @@
             "name": "❌ ESLint Config",
             "path": "packages/eslint-config",
         },
+        {
+            "name": "⚙️ Package Generator",
+            "path": "scripts/make-package",
+        },
     ],
 }

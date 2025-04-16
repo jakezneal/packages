@@ -8,12 +8,15 @@
         "format": "NODE_OPTIONS=\"--experimental-strip-types\" prettier --write \"**/*.{ts,tsx,md,json}\"",
         "changeset": "changeset",
         "version-packages": "changeset version",
-        "release": "turbo run build && changeset publish"
+        "release": "turbo run build && changeset publish",
+        "make:package": "jiti ./scripts/make-package/index.ts"
     },
     "devDependencies": {
         "@changesets/cli": "^2.27.7",
         "@types/eslint": "^9.6.0",
+        "@types/node": "^22.4.1",
         "eslint": "^9.9.0",
+        "jiti": "^2.4.2",
         "prettier": "^3.2.5",
         "prettier-plugin-organize-imports": "^4.1.0",
         "turbo": "^2.0.14",
