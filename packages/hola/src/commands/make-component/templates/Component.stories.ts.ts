@@ -19,19 +19,19 @@ const meta = {
     /**
      * Provide custom control types for your props.
      *
-     * @see https://storybook.js.org/docs/vue/essentials/controls#annotation
+     * @see https://storybook.js.org/docs/essentials/controls?renderer=vue#annotation
      */
     argTypes: generateArgTypes(${value.component.name.pascal}),
     /**
      * Set any default props data on your component.
      *
-     * @see https://storybook.js.org/docs/vue/writing-stories/args
+     * @see https://storybook.js.org/docs/writing-stories/args?renderer=vue
      */
     args: {},
     /**
      * Set any default parameters on your stories.
      *
-     * @see https://storybook.js.org/docs/vue/writing-stories/parameters
+     * @see https://storybook.js.org/docs/writing-stories/parameters?renderer=vue
      */
     parameters: {
         container: true,
@@ -40,7 +40,7 @@ const meta = {
     /**
      * Return your rendered component.
      *
-     * @see https://storybook.js.org/docs/vue/api/csf
+     * @see https://storybook.js.org/docs/api/csf?renderer=vue
      */
     render: (args: ${value.component.name.pascal}Props, { argTypes }) => ({
         name: '${value.component.name.kebab}-story',
