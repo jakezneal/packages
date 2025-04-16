@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.4.3
+
+### Patch Changes
+
+-   Fixed incorrect ejected path
+
 ## 1.4.2
 
 ### Patch Changes
