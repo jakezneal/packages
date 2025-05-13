@@ -71,11 +71,15 @@ export default defineCommand({
         let componentPath = path;
         let componentName = '';
 
-        const componentNameValidation = async () => {
-            const providedComponentPath = await text({
-                message: 'Component path:',
-                placeholder: 'ui/AppAlert',
-            });
+        const componentNameValidation = async ({ prompt = true }) => {
+            let providedComponentPath = componentPath;
+
+            if (prompt) {
+                providedComponentPath = await text({
+                    message: 'Component path:',
+                    placeholder: 'ui/AppAlert',
+                });
+            }
 
             const [providedComponentName] = providedComponentPath
                 .split('/')
@@ -88,7 +92,7 @@ export default defineCommand({
             if (uppercaseCount <= 1) {
                 log.error('Component names should be at least two words');
 
-                await componentNameValidation();
+                await componentNameValidation({});
             } else {
                 componentPath = providedComponentPath;
                 componentName = providedComponentName;
@@ -98,8 +102,10 @@ export default defineCommand({
         if (!path) {
             intro('make:component');
 
-            await componentNameValidation();
+            await componentNameValidation({});
         }
+
+        await componentNameValidation({ prompt: false });
 
         componentPath = [
             holaConfig.defaultPath && !args.overridePath
