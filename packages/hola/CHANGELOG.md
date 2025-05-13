@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.5.1
+
+### Patch Changes
+
+-   Fixed issue with provided component names not being used
+
 ## 1.5.0
 
 ### Minor Changes
