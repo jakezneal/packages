@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.5.0
+
+### Minor Changes
+
+-   Added component name check
+
 ## 1.4.3
 
 ### Patch Changes
