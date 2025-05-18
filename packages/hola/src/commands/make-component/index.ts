@@ -5,11 +5,13 @@ import config from '../../config';
 import { intro, log, note, outro } from '@clack/prompts';
 import { confirm, promptScope, text } from '../../prompts';
 
-import { ejectTemplates, generateTemplates } from './templates';
-import testsTemplate from './templates/Component.spec.ts';
-import storiesTemplate from './templates/Component.stories.ts';
-import componentTemplate from './templates/Component.vue';
-import { generateTemplateData } from './utils';
+import * as react from './frameworks/react';
+import * as vue from './frameworks/vue';
+
+const frameworks = {
+    vue,
+    react,
+} as const;
 
 export default defineCommand({
     meta: {
@@ -45,23 +47,21 @@ export default defineCommand({
     async run({ args }) {
         const holaConfig = await config();
 
+        const framework = frameworks[holaConfig.framework];
+
+        if (!framework) {
+            log.error('Framework not specified in config');
+
+            return;
+        }
+
         if (args.eject) {
             intro('make:component --eject');
 
-            const templates = await ejectTemplates();
-
-            await templates.component();
-
-            if (holaConfig?.features?.storybook) {
-                await templates.stories();
-            }
-
-            if (holaConfig?.features?.tests) {
-                await templates.tests();
-            }
+            const templatesPath = await framework.eject({});
 
             outro(
-                `Templates ejected at ${templates.templatesPath.replace(process.cwd(), '.')}`,
+                `Templates ejected at ${templatesPath.replace(process.cwd(), '.')}`,
             );
 
             return;
@@ -142,41 +142,25 @@ export default defineCommand({
                 return;
             }
 
-            const templateData = generateTemplateData({
+            await framework.run({
                 componentName,
-                componentPath,
+                path: componentPath,
             });
-
-            const templates = generateTemplates({
-                componentFileName: 'Component.vue',
-                componentName,
-                outputPath: componentPath,
-                templateData,
-                componentTemplate,
-                storiesTemplate,
-                testsTemplate,
-            });
-
-            await templates.component();
 
             if (holaConfig?.features?.storybook) {
-                await templates.stories();
-
                 log.info(
-                    `Story generated at ${componentPath}/${componentName}.stories.ts`,
+                    `Story generated at ${componentPath}/${componentName}.${framework.config.storiesExtension}`,
                 );
             }
 
             if (holaConfig?.features?.tests) {
-                await templates.tests();
-
                 log.info(
-                    `Test generated at ${componentPath}/${componentName}.spec.ts`,
+                    `Test generated at ${componentPath}/${componentName}.${framework.config.testsExtension}`,
                 );
             }
 
             outro(
-                `Component generated at ${componentPath}/${componentName}.vue`,
+                `Component generated at ${componentPath}/${componentName}.${framework.config.componentExtension}`,
             );
         });
     },

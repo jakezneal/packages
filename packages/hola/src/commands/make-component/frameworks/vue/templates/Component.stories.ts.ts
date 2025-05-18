@@ -1,4 +1,4 @@
-import type { TemplateData } from '../types';
+import type { TemplateData } from '../../../types';
 
 export default (value: TemplateData) => `/**
  * Stories for ${value.component.name.pascal}.
@@ -7,7 +7,7 @@ export default (value: TemplateData) => `/**
  */
 
 import type { Meta, StoryObj } from '@storybook/vue3';
-import { argsKeys, generateArgTypes } from '${value.paths.fromRoot('.storybook/helpers')}';
+import { argsKeys } from '${value.paths.fromRoot('.storybook/helpers')}';
 import ${value.component.name.pascal}, { type ${value.component.name.pascal}Props } from './${value.component.name.pascal}.vue';
 
 const meta = {
@@ -21,7 +21,7 @@ const meta = {
      *
      * @see https://storybook.js.org/docs/essentials/controls?renderer=vue#annotation
      */
-    argTypes: generateArgTypes(${value.component.name.pascal}),
+    argTypes: {},
     /**
      * Set any default props data on your component.
      *

@@ -2,5 +2,5 @@ node_modules
 dist
 /playground/pnpm-lock.yaml
 /playground/.hola.config.js
-/playground/resources
+/playground/components
 /playground/.hola

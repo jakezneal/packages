@@ -14,3 +14,39 @@ export type TemplateData = {
         fromRoot: (path: string) => string;
     };
 };
+
+export type FileNames = {
+    componentFileName?: string;
+    storiesFileName?: string;
+    testsFileName?: string;
+};
+
+export interface FrameworkCoreModuleConfig extends FileNames {
+    componentName: string;
+    path: string;
+}
+
+export interface FrameworkCoreModuleRunConfig
+    extends FrameworkCoreModuleConfig {
+    componentTemplate: (value: TemplateData) => string;
+    storiesTemplate: (value: TemplateData) => string;
+    testsTemplate: (value: TemplateData) => string;
+}
+
+export interface FrameworkModuleEjectConfig extends FileNames {}
+
+export type FrameworkModule = {
+    run: (config: FrameworkCoreModuleConfig) => Promise<void>;
+    eject: (config: FrameworkModuleEjectConfig) => Promise<string>;
+};
+
+export type FrameworkCoreModule = {
+    run: (config: FrameworkCoreModuleRunConfig) => Promise<void>;
+    eject: (config: FrameworkModuleEjectConfig) => Promise<string>;
+};
+
+export type FrameworkConfig = {
+    componentExtension: string;
+    storiesExtension: string;
+    testsExtension: string;
+};

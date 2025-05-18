@@ -1,8 +1,9 @@
 import { defineCommand } from 'citty';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'pathe';
-import { confirm, promptScope, text } from '../../prompts';
-import type { HolaConfig } from '../../types';
+import { confirm, promptScope, select, text } from '../../prompts';
+import type { FrameworkOption, HolaConfig } from '../../types';
+import type { FrameworkSelectOption } from './types';
 
 export default defineCommand({
     meta: {
@@ -24,6 +25,37 @@ export default defineCommand({
 
         await promptScope(async ({ intro, outro }) => {
             intro('👋 Hola. Creating config...');
+
+            const reactDetected = Object.keys(dependencies).some((name) =>
+                name.includes('react'),
+            );
+
+            const vueDetected = Object.keys(dependencies).some((name) =>
+                name.includes('vue'),
+            );
+
+            const frameworks: FrameworkSelectOption[] = [
+                {
+                    label: 'React',
+                    value: 'react',
+                    hint: reactDetected ? '(detected)' : undefined,
+                },
+                {
+                    label: 'Vue',
+                    value: 'vue',
+                    hint: vueDetected ? '(detected)' : undefined,
+                },
+            ];
+
+            const framework = (await select({
+                message: 'Select framework:',
+                options: frameworks,
+                initialValue: reactDetected
+                    ? 'react'
+                    : vueDetected
+                      ? 'vue'
+                      : undefined,
+            })) as FrameworkOption;
 
             const storybookDetected = Object.keys(dependencies).some((name) =>
                 name.includes('storybook'),
@@ -62,6 +94,7 @@ export default defineCommand({
                 },
                 defaultPath,
                 prefix,
+                framework,
             };
 
             writeFileSync(

@@ -1,4 +1,4 @@
-import type { TemplateData } from '../types';
+import type { TemplateData } from '../../../types';
 
 export default (value: TemplateData) => `<template>
     <div class="${value.component.name.kebab}">
@@ -7,8 +7,8 @@ export default (value: TemplateData) => `<template>
 </template>
 
 <script setup lang="ts">
-export type ${value.component.name.pascal}Props = {};
+    export type ${value.component.name.pascal}Props = {};
 
-const props = defineProps<${value.component.name.pascal}Props>();
+    const props = defineProps<${value.component.name.pascal}Props>();
 </script>
 `;

@@ -2,7 +2,7 @@ import { log } from '@clack/prompts';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'pathe';
 import { fileURLToPath } from 'url';
-import type { TemplateData } from './types';
+import type { FileNames, TemplateData } from './types';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
@@ -86,6 +86,7 @@ export const generateTemplates = ({
     componentName,
     componentFileName = 'Component.vue',
     storiesFileName = 'Component.stories.ts',
+    testsFileName = 'Component.spec.ts',
     outputPath,
     templateData,
     componentTemplate,
@@ -95,6 +96,7 @@ export const generateTemplates = ({
     componentName: string;
     componentFileName?: string;
     storiesFileName?: string;
+    testsFileName?: string;
     outputPath: string;
     templateData: TemplateData;
     componentTemplate: (value: TemplateData) => string;
@@ -120,14 +122,11 @@ export const generateTemplates = ({
             }),
         tests: () =>
             generateTemplate({
-                fileName: 'Component.spec.ts'.replace(
-                    'Component',
-                    componentName,
-                ),
+                fileName: testsFileName.replace('Component', componentName),
                 path: outputPath,
                 templateData,
                 template: testsTemplate,
-                stubFile: 'Component.spec.ts',
+                stubFile: testsFileName,
             }),
     };
 };
@@ -136,11 +135,7 @@ export const ejectTemplates = async ({
     componentFileName = 'Component.vue',
     storiesFileName = 'Component.stories.ts',
     testsFileName = 'Component.spec.ts',
-}: {
-    componentFileName?: string;
-    storiesFileName?: string;
-    testsFileName?: string;
-} = {}) => {
+}: FileNames = {}) => {
     return {
         component: () => ejectStub(componentFileName),
         stories: () => ejectStub(storiesFileName),
