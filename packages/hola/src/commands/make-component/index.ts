@@ -5,6 +5,7 @@ import config from '../../config';
 import { intro, log, note, outro } from '@clack/prompts';
 import { confirm, promptScope, text } from '../../prompts';
 
+import { writeConfig } from '../../utils';
 import * as react from './frameworks/react';
 import * as vue from './frameworks/vue';
 
@@ -45,14 +46,17 @@ export default defineCommand({
     },
 
     async run({ args }) {
-        const holaConfig = await config();
+        let holaConfig = await config();
 
-        const framework = frameworks[holaConfig.framework];
+        let framework = frameworks[holaConfig.framework];
 
         if (!framework) {
             log.error('Framework not specified in config');
 
-            return;
+            await writeConfig({ initialise: false });
+
+            holaConfig = await config();
+            framework = frameworks[holaConfig.framework];
         }
 
         if (args.eject) {
