@@ -4,7 +4,9 @@ import { resolve } from 'pathe';
 import { fileURLToPath } from 'url';
 import type { FileNames, TemplateData } from './types';
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const __dirname = fileURLToPath(new URL('.', import.meta.url), {
+    windows: process.platform === 'win32',
+});
 
 const ejectPath = async () =>
     resolve(process.cwd(), '.hola/commands/make-component/templates');
