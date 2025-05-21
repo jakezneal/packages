@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.6.1
+
+### Patch Changes
+
+-   Added Windows check
+
 ## 1.6.0
 
 ### Minor Changes
