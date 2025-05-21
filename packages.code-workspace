@@ -28,5 +28,9 @@
             "name": "⚙️ Package Generator",
             "path": "scripts/make-package",
         },
+        {
+            "name": "🧪 Vue Test Utils",
+            "path": "packages/vue-test-utils",
+        },
     ],
 }

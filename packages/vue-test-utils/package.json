@@ -1,0 +1,36 @@
+{
+    "name": "@jakezneal/vue-test-utils",
+    "version": "0.1.0",
+    "license": "MIT",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "./dist"
+    ],
+    "scripts": {
+        "build": "tsup src/index.ts --format esm,cjs --clean --dts",
+        "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+        "format": "prettier --write \"**/*.{ts,md,json}\"",
+        "prepack": "pnpm build"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "tsup": "^8.2.4",
+        "typescript": "^5.5.4"
+    },
+    "dependencies": {
+        "@types/lodash.merge": "^4.6.9",
+        "@vue/test-utils": "^2.4.6",
+        "lodash.merge": "^4.6.2",
+        "vue": "^3.5.14"
+    }
+}

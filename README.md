@@ -14,3 +14,4 @@ This monorepo includes the following packages:
 -   🪄 [Hola](packages/hola) — A CLI for configuring and scaffolding front-end projects
 -   🅿️ [Prettier Config](packages/prettier-config) — My personal Prettier config
 -   ❌ [ESLint Config](packages/eslint-config) — My personal ESLint config
+-   🧪 [Vue Test Utils](packages/vue-test-utils) — Utility functions to improve DX when writing tests in Vue.js
