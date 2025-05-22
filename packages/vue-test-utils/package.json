@@ -6,6 +6,16 @@
         ".": {
             "import": "./dist/index.mjs",
             "require": "./dist/index.cjs"
+        },
+        "./directives/*": {
+            "types": "././dist/directives/*.d.ts",
+            "import": "./dist/directives/*.mjs",
+            "require": "./dist/directives/*.cjs"
+        },
+        "./wrapper-plugins/*": {
+            "types": "././dist/wrapper-plugins/*.d.ts",
+            "import": "./dist/wrapper-plugins/*.mjs",
+            "require": "./dist/wrapper-plugins/*.cjs"
         }
     },
     "main": "./dist/index.cjs",
