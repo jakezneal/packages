@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.6.2
+
+### Patch Changes
+
+-   Added file extension to import
+
 ## 1.6.1
 
 ### Patch Changes
