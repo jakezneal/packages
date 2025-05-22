@@ -15,7 +15,7 @@
         "./dist"
     ],
     "scripts": {
-        "build": "tsup src/index.ts --format esm,cjs --clean --dts",
+        "build": "tsup src/index.ts src/directives src/wrapper-plugins --format esm,cjs --clean --dts",
         "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
         "format": "prettier --write \"**/*.{ts,md,json}\"",
         "prepack": "pnpm build"
