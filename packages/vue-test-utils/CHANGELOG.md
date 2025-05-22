@@ -1,5 +1,11 @@
 # @jakezneal/vue-test-utils
 
+## 0.2.2
+
+### Patch Changes
+
+-   Augmented @vue/test-utils to add new functions
+
 ## 0.2.1
 
 ### Patch Changes
