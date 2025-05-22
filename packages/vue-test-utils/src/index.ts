@@ -2,6 +2,7 @@ import { config as globalConfig } from '@vue/test-utils';
 import merge from 'lodash.merge';
 import { type Directive } from 'vue';
 import { type Stubs } from './types';
+import './vue-test-utils.d.ts';
 
 export const setPlugins = (plugins = {}) => {
     merge(globalConfig.global.plugins, plugins);
