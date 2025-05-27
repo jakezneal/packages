@@ -34,7 +34,7 @@
         "access": "public"
     },
     "devDependencies": {
-        "tsup": "^8.2.4",
+        "tsup": "^8.5.0",
         "typescript": "^5.5.4"
     },
     "dependencies": {
