@@ -38,10 +38,10 @@ export default defineCommand({
                 'Override the default path set in the config. Useful for creating a one-off component in a different location',
         },
 
-        prefix: {
+        skipPrefix: {
             type: 'boolean',
             description:
-                'Prefix the component name with the prefix set in the config',
+                'Skip prefixing the component name with the prefix set in the config',
         },
     },
 
@@ -71,6 +71,12 @@ export default defineCommand({
             return;
         }
 
+        if (!holaConfig.prefix && args.skipPrefix) {
+            log.error('Prefix is not defined in the config');
+
+            return;
+        }
+
         const { path } = args;
         let componentPath = path;
         let componentName = '';
@@ -93,13 +99,25 @@ export default defineCommand({
                 providedComponentName.match(new RegExp('[A-Z]', 'g')) || []
             )?.length;
 
-            if (uppercaseCount <= 1) {
+            const componentPrefix =
+                !args.skipPrefix && holaConfig.prefix ? holaConfig.prefix : '';
+
+            if (
+                ((holaConfig.prefix && args.skipPrefix) ||
+                    (!holaConfig.prefix && !args.skipPrefix)) &&
+                uppercaseCount <= 1
+            ) {
                 log.error('Component names should be at least two words');
 
                 await componentNameValidation({});
             } else {
-                componentPath = providedComponentPath;
-                componentName = providedComponentName;
+                componentName = `${componentPrefix}${providedComponentName}`;
+                componentPath = providedComponentPath = [
+                    holaConfig.defaultPath && !args.overridePath
+                        ? `${holaConfig.defaultPath}/`
+                        : undefined,
+                    componentName,
+                ].join('');
             }
         };
 
@@ -110,15 +128,6 @@ export default defineCommand({
         }
 
         await componentNameValidation({ prompt: false });
-
-        componentPath = [
-            holaConfig.defaultPath && !args.overridePath
-                ? `${holaConfig.defaultPath}/`
-                : undefined,
-            componentPath.replace(componentName, ''),
-            args.prefix && holaConfig.prefix ? holaConfig.prefix : undefined,
-            componentName,
-        ].join('');
 
         if (args.prefix && holaConfig.prefix) {
             componentName = `${holaConfig.prefix}${componentName}`;
