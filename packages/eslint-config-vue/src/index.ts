@@ -1,7 +1,5 @@
 import type { Linter } from 'eslint';
-// @ts-ignore
 import pluginVue from 'eslint-plugin-vue';
-// @ts-ignore
 import pluginVueAccessibility from 'eslint-plugin-vuejs-accessibility';
 
 const config: Linter.Config = {
