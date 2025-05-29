@@ -33,13 +33,6 @@ const config: Linter.Config = {
             },
         ],
         'vue/component-definition-name-casing': [1, 'kebab-case'],
-        'vue/component-name-in-template-casing': [
-            1,
-            'kebab-case',
-            {
-                registeredComponentsOnly: false,
-            },
-        ],
         'vue/eqeqeq': [1],
         'vue/html-closing-bracket-newline': [
             1,
