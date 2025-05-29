@@ -7,7 +7,7 @@
         "lint": "turbo lint",
         "format": "NODE_OPTIONS=\"--experimental-strip-types\" prettier --write \"**/*.{ts,tsx,md,json}\"",
         "changeset": "changeset",
-        "version-packages": "changeset version",
+        "version": "changeset version",
         "release": "turbo run build && changeset publish",
         "make:package": "jiti ./scripts/make-package/index.ts"
     },
