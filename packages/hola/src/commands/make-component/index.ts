@@ -116,6 +116,7 @@ export default defineCommand({
                     holaConfig.defaultPath && !args.overridePath
                         ? `${holaConfig.defaultPath}/`
                         : undefined,
+                    providedComponentPath.replace(providedComponentName, ''),
                     componentName,
                 ].join('');
             }
