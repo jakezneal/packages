@@ -2,6 +2,7 @@ import { log } from '@clack/prompts';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'pathe';
 import { fileURLToPath } from 'url';
+import config from '../../config';
 import type { FileNames, TemplateData } from './types';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url), {
@@ -9,10 +10,21 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url), {
 });
 
 const ejectPath = async () =>
-    resolve(process.cwd(), '.hola/commands/make-component/templates');
+    resolve(
+        process.cwd(),
+        '.hola/commands/make-component',
+        (await config())?.framework,
+        'templates',
+    );
 
 const defaultTemplatePath = async (path: string = '') =>
-    resolve(__dirname, 'templates', path);
+    resolve(
+        __dirname,
+        'frameworks',
+        (await config())?.framework,
+        'templates',
+        path,
+    );
 
 const ejectedTemplatePath = async (path: string = '') =>
     resolve(await ejectPath(), path);
