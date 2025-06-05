@@ -1,5 +1,11 @@
 # @jakezneal/vue-test-utils
 
+## 0.3.1
+
+### Patch Changes
+
+- Updated Vue Test Utils to match helpers
+
 ## 0.3.0
 
 ### Minor Changes
