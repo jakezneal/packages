@@ -4,12 +4,12 @@ import { type ComponentOptions } from 'vue';
 export const addTestIdHelpers = (wrapper: VueWrapper) => {
     const selector = (id: string) => `[data-testid="${id}"]`;
 
-    const findByTestId = (id: string) => {
-        return wrapper.find(selector(id));
+    const findByTestId = <T extends Node>(id: string) => {
+        return wrapper.find<T>(selector(id));
     };
 
-    const findAllByTestId = (id: string) => {
-        return wrapper.findAll(selector(id));
+    const findAllByTestId = <T extends Element>(id: string) => {
+        return wrapper.findAll<T>(selector(id));
     };
 
     const findComponentByTestId = (component: ComponentOptions, id: string) => {
