@@ -3,8 +3,8 @@ import type { ComponentOptions } from 'vue';
 
 declare module '@vue/test-utils' {
     interface VueWrapper {
-        findByTestId(testId: string): DOMWrapper<any>;
-        findAllByTestId(testId: string): DOMWrapper<any>[];
+        findByTestId<T extends Node>(testId: string): DOMWrapper<T>;
+        findAllByTestId<T extends Element>(testId: string): DOMWrapper<T>[];
         findComponentByTestId(
             component: ComponentOptions,
             testId: string,
