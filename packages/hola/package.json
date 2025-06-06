@@ -43,7 +43,7 @@
     "devDependencies": {
         "@types/node": "^22.15.29",
         "jiti": "^2.4.2",
-        "type-fest": "^4.39.1",
+        "type-fest": "^4.41.0",
         "typescript": "^5.8.3",
         "unbuild": "^2.0.0"
     }
