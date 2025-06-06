@@ -24,7 +24,6 @@
         "access": "public"
     },
     "devDependencies": {
-        "@types/node": "^22.15.29",
         "prettier": "^3.5.3",
         "tsup": "^8.5.0",
         "typescript": "^5.8.3"
