@@ -12,7 +12,7 @@
         "make:package": "jiti ./scripts/make-package/index.ts"
     },
     "devDependencies": {
-        "@changesets/cli": "^2.27.7",
+        "@changesets/cli": "^2.29.4",
         "@types/eslint": "^9.6.0",
         "@types/node": "^22.15.29",
         "eslint": "^9.9.0",
