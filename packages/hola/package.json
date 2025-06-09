@@ -34,7 +34,7 @@
         "access": "public"
     },
     "dependencies": {
-        "@clack/prompts": "^0.7.0",
+        "@clack/prompts": "^0.11.0",
         "c12": "^1.11.1",
         "citty": "^0.1.6",
         "pathe": "^2.0.3",
