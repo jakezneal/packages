@@ -41,6 +41,6 @@
         "@types/lodash.merge": "^4.6.9",
         "@vue/test-utils": "^2.4.6",
         "lodash.merge": "^4.6.2",
-        "vue": "^3.5.14"
+        "vue": "^3.5.16"
     }
 }
