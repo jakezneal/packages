@@ -56,7 +56,7 @@ const meta = {
         },
 
         template: \`
-            <${value.component.name.kebab}
+            <${value.component.name.pascal}
                 v-bind="args"
             />
         \`,
@@ -65,7 +65,7 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-export const ${value.component.name.camel}: Story = {
+export const Default: Story = {
     name: '${value.component.name.pascal}',
 };
     

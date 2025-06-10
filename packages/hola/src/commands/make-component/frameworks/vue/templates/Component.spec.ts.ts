@@ -8,13 +8,13 @@ import { composeStories } from '@storybook/vue3';
 import { mount, type VueWrapper } from '@vue/test-utils';
 import { beforeEach, describe, expect, test } from 'vitest';
 
-const { ${value.component.name.camel} } = composeStories(${value.component.name.pascal});
+const { Default } = composeStories(${value.component.name.pascal});
 
 describe('${value.component.name.pascal}', () => {
     let wrapper: VueWrapper;
 
     beforeEach(() => {
-        wrapper = mount(${value.component.name.camel});
+        wrapper = mount(Default);
     });
 });
 `;
