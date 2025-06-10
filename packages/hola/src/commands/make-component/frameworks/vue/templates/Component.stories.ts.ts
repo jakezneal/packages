@@ -6,7 +6,7 @@ export default (value: TemplateData) => `/**
  * @see https://storybook.js.org/docs/vue/essentials/controls
  */
 
-import type { Meta, StoryObj } from '@storybook/vue3';
+import type { Meta, StoryObj } from ${value.storybookV9 ? '@storybook/vue3-vite' : '@storybook/vue3'};
 import { argsKeys } from '${value.paths.fromRoot('.storybook/helpers/index.ts')}';
 import ${value.component.name.pascal}, { type ${value.component.name.pascal}Props } from './${value.component.name.pascal}.vue';
 

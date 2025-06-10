@@ -13,6 +13,7 @@ export type TemplateData = {
     paths: {
         fromRoot: (path: string) => string;
     };
+    storybookV9: boolean;
 };
 
 export type FileNames = {
