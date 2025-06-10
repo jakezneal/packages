@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.9.0
+
+### Minor Changes
+
+- Added Storybook V9 support
+
 ## 1.8.0
 
 ### Minor Changes
