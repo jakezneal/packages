@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.9.1
+
+### Patch Changes
+
+- Fixed import path
+
 ## 1.9.0
 
 ### Minor Changes
