@@ -4,7 +4,7 @@ export default (
     value: TemplateData,
 ) => `import * as ${value.component.name.pascal} from './${value.component.name.pascal}.stories';
 
-import { composeStories } from ${value.storybookV9 ? '@storybook/react-vite' : '@storybook/react'};
+import { composeStories } from ${value.storybookV9 ? "'@storybook/react-vite'" : "'@storybook/react'"};
 import { render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, test } from 'vitest';
 
