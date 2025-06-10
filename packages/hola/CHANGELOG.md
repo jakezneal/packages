@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.8.0
+
+### Minor Changes
+
+- Updated default story name
+
 ## 1.7.2
 
 ### Patch Changes
