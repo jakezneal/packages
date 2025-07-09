@@ -7,7 +7,7 @@ export default (value: TemplateData) => `<template>
 </template>
 
 <script setup lang="ts">
-    export type ${value.component.name.pascal}Props = {};
+    export interface ${value.component.name.pascal}Props {};
 
     const props = defineProps<${value.component.name.pascal}Props>();
 </script>
