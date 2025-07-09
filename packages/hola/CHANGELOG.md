@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.9.2
+
+### Patch Changes
+
+- Swapped to interface for consistency
+
 ## 1.9.1
 
 ### Patch Changes
