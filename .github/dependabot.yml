@@ -1,13 +1,58 @@
 ---
 version: 2
 updates:
-    - package-ecosystem: 'npm'
-      directories:
-          - /
-          - /packages/*
+    - package-ecosystem: npm
+      directory: '/'
       schedule:
-          interval: 'weekly'
+          interval: weekly
       open-pull-requests-limit: 10
-      target-branch: main
+      labels:
+          - 'dependencies'
+
+    - package-ecosystem: npm
+      directory: '/packages/eslint-config'
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 10
+      labels:
+          - 'dependencies'
+
+    - package-ecosystem: npm
+      directory: '/packages/eslint-config-basic'
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 10
+      labels:
+          - 'dependencies'
+
+    - package-ecosystem: npm
+      directory: '/packages/eslint-config-vue'
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 10
+      labels:
+          - 'dependencies'
+
+    - package-ecosystem: npm
+      directory: '/packages/hola'
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 10
+      labels:
+          - 'dependencies'
+
+    - package-ecosystem: npm
+      directory: '/packages/prettier-config'
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 10
+      labels:
+          - 'dependencies'
+
+    - package-ecosystem: npm
+      directory: '/packages/vue-test-utils'
+      schedule:
+          interval: weekly
+      open-pull-requests-limit: 10
       labels:
           - 'dependencies'
