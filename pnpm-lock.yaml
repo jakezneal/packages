@@ -89,8 +89,8 @@ importers:
   packages/eslint-config-vue:
     dependencies:
       eslint-plugin-vue:
-        specifier: ^10.3.0
-        version: 10.3.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@9.4.3(eslint@9.30.1(jiti@2.4.2)))
+        specifier: ^10.4.0
+        version: 10.4.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@9.4.3(eslint@9.30.1(jiti@2.4.2)))
       eslint-plugin-vuejs-accessibility:
         specifier: ^2.4.1
         version: 2.4.1(eslint@9.30.1(jiti@2.4.2))
@@ -1465,8 +1465,8 @@ packages:
     peerDependencies:
       eslint: ^7.2.0 || ^8
 
-  eslint-plugin-vue@10.3.0:
-    resolution: {integrity: sha512-A0u9snqjCfYaPnqqOaH6MBLVWDUIN4trXn8J3x67uDcXvR7X6Ut8p16N+nYhMCQ9Y7edg2BIRGzfyZsY0IdqoQ==}
+  eslint-plugin-vue@10.4.0:
+    resolution: {integrity: sha512-K6tP0dW8FJVZLQxa2S7LcE1lLw3X8VvB3t887Q6CLrFVxHYBXGANbXvwNzYIu6Ughx1bSJ5BDT0YB3ybPT39lw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       '@typescript-eslint/parser': ^7.0.0 || ^8.0.0
@@ -2472,6 +2472,7 @@ packages:
   source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
     engines: {node: '>= 8'}
+    deprecated: The work that was done in this beta branch won't be included in future versions
 
   spawndamnit@3.0.1:
     resolution: {integrity: sha512-MmnduQUuHCoFckZoWnXsTg7JaiLBJrKFj9UI2MbRPGaJeVpsLcVBu6P/IGZovziM/YBsellCmsprgNA+w0CzVg==}
@@ -3949,7 +3950,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-vue@10.3.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@9.4.3(eslint@9.30.1(jiti@2.4.2))):
+  eslint-plugin-vue@10.4.0(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@9.4.3(eslint@9.30.1(jiti@2.4.2))):
     dependencies:
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.30.1(jiti@2.4.2))
       eslint: 9.30.1(jiti@2.4.2)
