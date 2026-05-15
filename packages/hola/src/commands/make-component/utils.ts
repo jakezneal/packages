@@ -25,11 +25,11 @@ export const generateTemplateData = ({
         name.includes('storybook'),
     );
 
-    const [_, storybookVersion] = Object.entries(dependencies).find(
-        ([name]) => name === 'storybook',
-    ) as string[];
-
     if (storybookDetected) {
+        const [_, storybookVersion] = Object.entries(dependencies).find(
+            ([name]) => name === 'storybook',
+        ) as string[];
+
         storybookV9 = new RegExp('^[^\d]*(9)').test(storybookVersion);
     }
 
