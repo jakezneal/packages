@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.9.3
+
+### Patch Changes
+
+- Added Storybook version destructure to detection guard
+
 ## 1.9.2
 
 ### Patch Changes

@@ -19,7 +19,7 @@ pnpm dlx @jakezneal/hola
 ```txt
 > jiti ./src/index.ts "--help"
 
-👋 Hola (@jakezneal/hola v1.4.0)
+👋 Hola (@jakezneal/hola v1.9.3)
 
 USAGE @jakezneal/hola init|make:component|config
 
