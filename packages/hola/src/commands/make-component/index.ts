@@ -43,6 +43,11 @@ export default defineCommand({
             description:
                 'Skip prefixing the component name with the prefix set in the config',
         },
+
+        skipConfirmation: {
+            type: 'boolean',
+            description: 'Skip the component name and path confirmation',
+        },
     },
 
     async run({ args }) {
@@ -146,14 +151,16 @@ export default defineCommand({
             note(componentName, 'Component name:');
             note(componentPath, 'Component path:');
 
-            const confirmed = await confirm({
-                message: 'Is the above correct?',
-            });
+            if (!args.skipConfirmation) {
+                const confirmed = await confirm({
+                    message: 'Is the above correct?',
+                });
 
-            if (!confirmed) {
-                outro('Aborted');
+                if (!confirmed) {
+                    outro('Aborted');
 
-                return;
+                    return;
+                }
             }
 
             await framework.run({
