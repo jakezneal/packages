@@ -1,5 +1,11 @@
 # @jakezneal/hola
 
+## 1.10.0
+
+### Minor Changes
+
+- Add a `skipConfirmation` flag to `make:component` that bypasses the name and path confirmation prompt, enabling non-interactive usage (e.g. AI agents).
+
 ## 1.9.3
 
 ### Patch Changes
